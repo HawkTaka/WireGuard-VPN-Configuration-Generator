@@ -226,15 +226,10 @@ We welcome contributions! Here's how you can help:
 - Update documentation as needed
 - Ensure all tests pass before submitting
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🐛 Support & Issues
 
-- **Bug Reports**: [GitHub Issues](https://github.com/yourusername/wireguard-config-generator/issues)
-- **Feature Requests**: [GitHub Discussions](https://github.com/yourusername/wireguard-config-generator/discussions)
-- **Documentation**: [Wiki](https://github.com/yourusername/wireguard-config-generator/wiki)
+- **Bug Reports**: [GitHub Issues](https://github.com/HawkTaka/wireguard-config-generator/issues)
+- **Feature Requests**: [GitHub Discussions](https://github.com/HawkTaka/wireguard-config-generator/discussions)
 
 ## 🙏 Acknowledgments
 
