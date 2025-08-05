@@ -51,7 +51,7 @@ A comprehensive WPF desktop application designed for network administrators to e
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/wireguard-config-generator.git
+   git clone https://github.com/HawkTaka/WireGuard-VPN-Configuration-Generator.git
    cd wireguard-config-generator
    ```
 
