@@ -1,0 +1,144 @@
+﻿<Window x:Class="VPNConfigGen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VPNConfigGen"
+        mc:Ignorable="d"
+        Title="WireGuard VPN Configuration Generator" Height="800" Width="1200">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="WireGuard VPN Configuration Generator" 
+                   FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+        
+        <GroupBox Grid.Row="1" Header="Server Profile" Margin="0,0,0,10">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Profile:" VerticalAlignment="Center"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding ServerProfiles}" 
+                          SelectedItem="{Binding SelectedProfile}" 
+                          DisplayMemberPath="ProfileName" 
+                          Margin="0,0,10,0"/>
+                <Button Grid.Column="2" Content="New" Command="{Binding NewProfileCommand}" 
+                        Width="60" Margin="0,0,5,0"/>
+                <Button Grid.Column="3" Content="Save" Command="{Binding SaveProfileCommand}" 
+                        Width="60" Margin="0,0,5,0"/>
+                <Button Grid.Column="4" Content="Load" Command="{Binding LoadProfileCommand}" 
+                        Width="60" Margin="0,0,5,0"/>
+                <Button Grid.Column="5" Content="Delete" Command="{Binding DeleteProfileCommand}" 
+                        Width="60" Margin="0,0,5,0"/>
+            </Grid>
+        </GroupBox>
+        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <GroupBox Grid.Column="0" Header="Configuration Input" Margin="0,0,10,0">
+                <StackPanel Margin="10">
+                    <Label Content="Client Name:"/>
+                    <TextBox Text="{Binding ClientName}" Margin="0,0,0,10"/>
+                    
+                    <Label Content="Client Public Key:"/>
+                    <TextBox Text="{Binding ClientPublicKey}" TextWrapping="Wrap" Height="60" 
+                             VerticalScrollBarVisibility="Auto" Margin="0,0,0,10"/>
+                    
+                    <Label Content="Server Public Key:"/>
+                    <TextBox Text="{Binding ServerPublicKey}" TextWrapping="Wrap" Height="60" 
+                             VerticalScrollBarVisibility="Auto" Margin="0,0,0,10"/>
+                    
+                    <Label Content="Server Endpoint:"/>
+                    <TextBox Text="{Binding ServerEndpoint}" Margin="0,0,0,10"/>
+                    
+                    <Label Content="Assigned IP Address:"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" Text="{Binding AssignedIPAddress}" Margin="0,0,5,10"/>
+                        <Button Grid.Column="1" Content="Get Next IP" Command="{Binding GetNextIPCommand}" 
+                                Width="80" Margin="0,0,0,10"/>
+                    </Grid>
+                    
+                    <Button Content="Generate Configuration" Command="{Binding GenerateConfigurationCommand}" 
+                            Width="150" Height="35" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                </StackPanel>
+            </GroupBox>
+            
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <GroupBox Grid.Row="0" Header="Generated Client Configuration" Margin="0,0,0,5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0" Text="{Binding GeneratedClientConfig}" 
+                                 IsReadOnly="True" TextWrapping="Wrap" 
+                                 VerticalScrollBarVisibility="Auto" FontFamily="Consolas"/>
+                        <Button Grid.Row="1" Content="Export Client Config" 
+                                Command="{Binding ExportClientConfigCommand}" 
+                                HorizontalAlignment="Right" Margin="5" Width="120"/>
+                    </Grid>
+                </GroupBox>
+                
+                <GroupBox Grid.Row="1" Header="Server Peer Configuration" Margin="0,5,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0" Text="{Binding GeneratedServerConfig}" 
+                                 IsReadOnly="True" TextWrapping="Wrap" 
+                                 VerticalScrollBarVisibility="Auto" FontFamily="Consolas"/>
+                        <Button Grid.Row="1" Content="Export Server Config" 
+                                Command="{Binding ExportServerConfigCommand}" 
+                                HorizontalAlignment="Right" Margin="5" Width="120"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+        
+        <GroupBox Grid.Row="3" Header="Configuration History" Height="150" Margin="0,10,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="Refresh" Command="{Binding RefreshConfigurationsCommand}" 
+                        HorizontalAlignment="Right" Margin="5" Width="80"/>
+                <DataGrid Grid.Row="1" ItemsSource="{Binding Configurations}" 
+                          SelectedItem="{Binding SelectedConfiguration}"
+                          AutoGenerateColumns="False" CanUserAddRows="False" Margin="5">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Generated At" Binding="{Binding GeneratedAt, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" Width="150"/>
+                        <DataGridTextColumn Header="Client Name" Binding="{Binding ClientName}" Width="150"/>
+                        <DataGridTextColumn Header="Client IP" Binding="{Binding ClientIPAddress}" Width="100"/>
+                        <DataGridTextColumn Header="Public Key" Binding="{Binding ClientPublicKey}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
