@@ -5,8 +5,6 @@
 
 A comprehensive WPF desktop application designed for network administrators to efficiently manage WireGuard VPN configurations across multiple servers. This tool streamlines the process of generating, tracking, and exporting WireGuard client configurations while maintaining separate profiles for different server environments.
 
-![Application Screenshot](screenshot.png)
-
 ## ✨ Key Features
 
 ### 🖥️ **Multi-Server Management**
