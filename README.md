@@ -2,7 +2,6 @@
 
 [![.NET](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://dotnet.microsoft.com/download)
 [![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://www.microsoft.com/windows)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 A comprehensive WPF desktop application designed for network administrators to efficiently manage WireGuard VPN configurations across multiple servers. This tool streamlines the process of generating, tracking, and exporting WireGuard client configurations while maintaining separate profiles for different server environments.
 
