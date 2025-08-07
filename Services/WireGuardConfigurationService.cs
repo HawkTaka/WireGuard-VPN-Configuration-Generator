@@ -30,7 +30,7 @@ namespace VPNConfigGen.Services
             var sb = new StringBuilder();
             
             sb.AppendLine("[Interface]");
-            sb.AppendLine($"PrivateKey = {config.ClientPrivateKey}");
+            sb.AppendLine($"# PrivateKey = <CLIENT_SHOULD_GENERATE_THEIR_OWN_PRIVATE_KEY>");
             sb.AppendLine($"Address = {config.ClientIPAddress}/32");
             sb.AppendLine($"DNS = {config.DNS}");
             sb.AppendLine();

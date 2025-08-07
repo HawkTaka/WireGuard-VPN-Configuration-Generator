@@ -126,8 +126,12 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Grid.Row="0" Content="Refresh" Command="{Binding RefreshConfigurationsCommand}" 
-                        HorizontalAlignment="Right" Margin="5" Width="80"/>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Delete Selected" Command="{Binding DeleteClientCommand}" 
+                            Margin="5" Width="100"/>
+                    <Button Content="Refresh" Command="{Binding RefreshConfigurationsCommand}" 
+                            Margin="5" Width="80"/>
+                </StackPanel>
                 <DataGrid Grid.Row="1" ItemsSource="{Binding Configurations}" 
                           SelectedItem="{Binding SelectedConfiguration}"
                           AutoGenerateColumns="False" CanUserAddRows="False" Margin="5">

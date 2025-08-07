@@ -98,6 +98,7 @@ namespace VPNConfigGen.ViewModels
         public ICommand SaveProfileCommand { get; }
         public ICommand LoadProfileCommand { get; }
         public ICommand DeleteProfileCommand { get; }
+        public ICommand DeleteClientCommand { get; }
         
         public MainViewModel()
         {
@@ -119,6 +120,7 @@ namespace VPNConfigGen.ViewModels
             SaveProfileCommand = new RelayCommand(ExecuteSaveProfile);
             LoadProfileCommand = new RelayCommand(ExecuteLoadProfile);
             DeleteProfileCommand = new RelayCommand(ExecuteDeleteProfile, CanExecuteDeleteProfile);
+            DeleteClientCommand = new RelayCommand(ExecuteDeleteClient, CanExecuteDeleteClient);
             
             LoadProfiles();
             LoadConfigurations();
@@ -162,13 +164,11 @@ namespace VPNConfigGen.ViewModels
         {
             try
             {
-                var privateKey = _configService.GeneratePrivateKey();
-                
                 var config = new VPNConfiguration
                 {
                     ClientName = ClientName,
                     ClientPublicKey = ClientPublicKey,
-                    ClientPrivateKey = privateKey,
+                    ClientPrivateKey = string.Empty,
                     ClientIPAddress = AssignedIPAddress,
                     ServerPublicKey = ServerPublicKey,
                     ServerEndpoint = ServerEndpoint,
@@ -370,6 +370,35 @@ namespace VPNConfigGen.ViewModels
         private bool CanExecuteDeleteProfile(object parameter)
         {
             return SelectedProfile != null && ServerProfiles?.Count > 1;
+        }
+        
+        private void ExecuteDeleteClient(object parameter)
+        {
+            if (SelectedConfiguration != null)
+            {
+                var configToDelete = SelectedConfiguration;
+                
+                _storageService.DeleteConfiguration(configToDelete.Id);
+                
+                LoadConfigurations();
+                
+                if (!string.IsNullOrEmpty(configToDelete.ClientIPAddress))
+                {
+                    try
+                    {
+                        AssignedIPAddress = _ipAddressService.GetNextAvailableIPAddress();
+                    }
+                    catch
+                    {
+                        AssignedIPAddress = string.Empty;
+                    }
+                }
+            }
+        }
+        
+        private bool CanExecuteDeleteClient(object parameter)
+        {
+            return SelectedConfiguration != null;
         }
     }
 }
