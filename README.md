@@ -2,11 +2,8 @@
 
 [![.NET](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://dotnet.microsoft.com/download)
 [![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://www.microsoft.com/windows)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 A comprehensive WPF desktop application designed for network administrators to efficiently manage WireGuard VPN configurations across multiple servers. This tool streamlines the process of generating, tracking, and exporting WireGuard client configurations while maintaining separate profiles for different server environments.
-
-![Application Screenshot](screenshot.png)
 
 ## ✨ Key Features
 
@@ -51,7 +48,7 @@ A comprehensive WPF desktop application designed for network administrators to e
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/wireguard-config-generator.git
+   git clone https://github.com/HawkTaka/WireGuard-VPN-Configuration-Generator.git
    cd wireguard-config-generator
    ```
 
@@ -226,15 +223,10 @@ We welcome contributions! Here's how you can help:
 - Update documentation as needed
 - Ensure all tests pass before submitting
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🐛 Support & Issues
 
-- **Bug Reports**: [GitHub Issues](https://github.com/yourusername/wireguard-config-generator/issues)
-- **Feature Requests**: [GitHub Discussions](https://github.com/yourusername/wireguard-config-generator/discussions)
-- **Documentation**: [Wiki](https://github.com/yourusername/wireguard-config-generator/wiki)
+- **Bug Reports**: [GitHub Issues](https://github.com/HawkTaka/wireguard-config-generator/issues)
+- **Feature Requests**: [GitHub Discussions](https://github.com/HawkTaka/wireguard-config-generator/discussions)
 
 ## 🙏 Acknowledgments
 
